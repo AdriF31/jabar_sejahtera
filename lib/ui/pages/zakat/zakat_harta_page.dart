@@ -48,7 +48,7 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
               controller: emasController
                 ..text = hargaEmasFormatter.format(emasController.text),
               title: 'Harga Emas',
-              hint: '5.000.000',
+              hint: '854.000',
               formatter: hargaEmasFormatter,
             ),
             const SizedBox(
