@@ -1,16 +1,9 @@
-# jabar_sejahtera
+# jabar sejahtera Project
 
-A new Flutter project.
+Aplikasi zakat dan donasi jawa barat
 
-## Getting Started
+## Contoh Aplikasi
+Berikut merupakan screenshot aplikasi yang sudah berjalan
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* ##### Login Page
+![login screen](https://github.com/AdriF31/jabar_sejahtera/blob/master/gitassets/login.png?raw=true "ini adalah halaman login")
