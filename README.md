@@ -1,9 +1,10 @@
 # jabar sejahtera Project
 
-Aplikasi zakat dan donasi jawa barat
+Jabar Sejahtera merupakan aplikasi untuk melakukan pembayaran zakat serta pengumpulan donasi di Jawa Barat.
 
-## Contoh Aplikasi
-Berikut merupakan screenshot aplikasi yang sudah berjalan
+## Demo Aplikasi
+Berikut merupakan demo dari aplikasi jabar sejahtera
 
-* ##### Login Page
-![login screen](https://github.com/AdriF31/jabar_sejahtera/blob/master/gitassets/login.png?raw=true  "ini adalah halaman login" )
+* ##### Demo Aplikasi Jabar Sejahtera
+
+![Alt Text](https://github.com/AdriF31/jabar_sejahtera/blob/master/gitassets/demo.gif?raw=true)
