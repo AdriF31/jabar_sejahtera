@@ -178,8 +178,11 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                                         style: blackTextStyle.copyWith(
                                             fontSize: 16),
                                         textAlign: TextAlign.justify,
-                                      )
+                                      ),
                                     ]),
+                                  ),
+                                  const SizedBox(
+                                    height: 24,
                                   ),
                                   const SizedBox(
                                     height: 24,

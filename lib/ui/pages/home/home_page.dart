@@ -1,10 +1,13 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:jabar_sejahtera/constValue/const_value.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 import 'package:jabar_sejahtera/ui/pages/donasi/donasi_page.dart';
 import 'package:jabar_sejahtera/ui/pages/donasi/donation_detail_page.dart';
 import 'package:jabar_sejahtera/ui/pages/event/event_detail_page.dart';
+import 'package:jabar_sejahtera/ui/pages/event/event_page%20copy.dart';
 import 'package:jabar_sejahtera/ui/pages/event/event_page.dart';
 import 'package:jabar_sejahtera/ui/pages/laporan/laporan_page.dart';
 import 'package:jabar_sejahtera/ui/pages/profil/profile_page.dart';
@@ -21,7 +24,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> pages = [const HomePage(), const EventPage(), const ProfilePage()];
+  final List<Widget> pages = [
+    const HomePage(),
+    const EventPage(),
+    const ProfilePage()
+  ];
 
   List<Map<String, dynamic>> donasi = [
     {
@@ -72,15 +79,19 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final List<Widget> _carousel = [
-    Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      width: double.infinity,
-      height: 150,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'assets/1.png',
-          fit: BoxFit.fill,
+    GestureDetector(
+      onTap: () => Get.to(
+          DonationDetailPage(tag: 'img', donasi: ConstValue.donasi, index: 0)),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        width: double.infinity,
+        height: 150,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            'assets/1.png',
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     ),
@@ -118,7 +129,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -235,8 +246,8 @@ class _HomePageState extends State<HomePage> {
               },
               child: Row(
                 children: const [
-              Text('Lihat Semua'),
-              Icon(Icons.navigate_next),
+                  Text('Lihat Semua'),
+                  Icon(Icons.navigate_next),
                 ],
               ),
             )
@@ -290,11 +301,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.to(EventPage2());
+              },
               child: Row(
                 children: const [
-              Text('Lihat Semua'),
-              Icon(Icons.navigate_next),
+                  Text('Lihat Semua'),
+                  Icon(Icons.navigate_next),
                 ],
               ),
             )
@@ -308,16 +321,22 @@ class _HomePageState extends State<HomePage> {
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(vertical: 12),
-              itemCount: 10,
+              itemCount: ConstValue.event.length,
               itemBuilder: (context, index) {
                 return EventCard(
+                    title: ConstValue.event[index]['title'],
+                    image: ConstValue.event[index]['image'],
+                    tempat: ConstValue.event[index]['tempat'],
+                    waktu: ConstValue.event[index]['waktu'],
                     tag: 'img$index',
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  EventDetailPage(tag: 'img$index')));
+                              builder: (context) => EventDetailPage(
+                                    tag: 'img$index',
+                                    index: index,
+                                  )));
                     });
               }),
         )

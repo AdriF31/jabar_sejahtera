@@ -1,6 +1,8 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/pembayaran/metode_pembayaran_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 
 class DonationDetailPage extends StatelessWidget {
@@ -9,6 +11,7 @@ class DonationDetailPage extends StatelessWidget {
   final int index;
   final CurrencyTextInputFormatter formatter =
       CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: 'Rp ');
+  final TextEditingController totalController = TextEditingController(text: '');
   DonationDetailPage(
       {super.key,
       required this.tag,
@@ -50,37 +53,125 @@ class DonationDetailPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5)),
+                                  GestureDetector(
+                                    onTap: () => Get.to(MetodePembayaranPage(
+                                        jenisPembayaran: 'Donasi',
+                                        totalPembayaran:
+                                            formatter.format('5000'))),
+                                    child: Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            formatter.format('5000'),
+                                            style: blackTextStyle.copyWith(
+                                                fontSize: 16),
+                                          ),
+                                          Icon(Icons.arrow_right)
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5)),
+                                  GestureDetector(
+                                    onTap: () => Get.to(MetodePembayaranPage(
+                                        jenisPembayaran: 'Donasi',
+                                        totalPembayaran:
+                                            formatter.format('10000'))),
+                                    child: Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            formatter.format('10000'),
+                                            style: blackTextStyle.copyWith(
+                                                fontSize: 16),
+                                          ),
+                                          Icon(Icons.arrow_right)
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5)),
+                                  GestureDetector(
+                                    onTap: () => Get.to(MetodePembayaranPage(
+                                        jenisPembayaran: 'Donasi',
+                                        totalPembayaran:
+                                            formatter.format('25000'))),
+                                    child: Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            formatter.format('25000'),
+                                            style: blackTextStyle.copyWith(
+                                                fontSize: 16),
+                                          ),
+                                          Icon(Icons.arrow_right)
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(5)),
+                                  GestureDetector(
+                                    onTap: () => Get.to(MetodePembayaranPage(
+                                        jenisPembayaran: 'Donasi',
+                                        totalPembayaran:
+                                            formatter.format('50000'))),
+                                    child: Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            formatter.format('50000'),
+                                            style: blackTextStyle.copyWith(
+                                                fontSize: 16),
+                                          ),
+                                          Icon(Icons.arrow_right)
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                   Container(
                                       margin: const EdgeInsets.symmetric(
@@ -102,6 +193,10 @@ class DonationDetailPage extends StatelessWidget {
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: TextField(
+                                              inputFormatters: [formatter],
+                                              controller: totalController,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               decoration: InputDecoration(
                                                   contentPadding:
                                                       const EdgeInsets.all(12),
@@ -119,6 +214,11 @@ class DonationDetailPage extends StatelessWidget {
                                         ],
                                       )),
                                   CustomFilledButton(
+                                      onPressed: () => Get.to(
+                                          MetodePembayaranPage(
+                                              jenisPembayaran: 'Donasi',
+                                              totalPembayaran: formatter.format(
+                                                  totalController.text))),
                                       title: 'Bayar Sekarang',
                                       color: buttonColor)
                                 ]),

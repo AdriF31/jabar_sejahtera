@@ -33,6 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   currency_text_input_formatter: ^2.1.7
   dio: ^4.0.6
+  dropdown_button2: ^1.8.9
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.5
@@ -45,6 +46,7 @@ dependencies:
   lottie: ^1.4.3
   rolling_bottom_bar: ^0.2.2
   smooth_page_indicator: ^1.0.0+2
+  syncfusion_flutter_datepicker: ^20.3.52
   webview_flutter: ^3.0.4
 
 dev_dependencies:

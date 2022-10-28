@@ -80,6 +80,9 @@ class DonasiCard extends StatelessWidget {
                         valueColor: AlwaysStoppedAnimation(progressBarColor),
                       ),
                     ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -246,8 +249,19 @@ class DonasiCardList extends StatelessWidget {
 
 class EventCard extends StatelessWidget {
   final VoidCallback? onTap;
+  final String title;
   final Object tag;
-  const EventCard({super.key, this.onTap, required this.tag});
+  final String image;
+  final String waktu;
+  final String tempat;
+  const EventCard(
+      {super.key,
+      this.onTap,
+      required this.tag,
+      required this.title,
+      required this.image,
+      required this.waktu,
+      required this.tempat});
 
   @override
   Widget build(BuildContext context) {
@@ -264,8 +278,16 @@ class EventCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-                child: Hero(tag: tag, child: Image.asset('assets/2.png'))),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(10)),
+                child: Hero(
+                    tag: tag,
+                    child: Image.asset(
+                      image,
+                      height: 100,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ))),
             const SizedBox(
               height: 2,
             ),
@@ -276,15 +298,16 @@ class EventCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Seminar Wibu',
+                    title,
                     style:
                         blackTextStyle.copyWith(fontSize: 16, fontWeight: bold),
+                    overflow: TextOverflow.fade,
                   ),
                   const SizedBox(
                     height: 2,
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.calendar_month,
                         size: 24,
@@ -292,14 +315,14 @@ class EventCard extends StatelessWidget {
                       SizedBox(
                         width: 4,
                       ),
-                      Text('30 Februari 2022')
+                      Text(waktu)
                     ],
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.location_on_outlined,
                         size: 24,
@@ -307,7 +330,7 @@ class EventCard extends StatelessWidget {
                       SizedBox(
                         width: 4,
                       ),
-                      Text('Kirigakure')
+                      Text(tempat)
                     ],
                   ),
                 ],

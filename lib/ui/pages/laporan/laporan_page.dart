@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jabar_sejahtera/constValue/const_value.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/laporan/laporan_pemasukan_page.dart';
+import 'package:jabar_sejahtera/ui/pages/laporan/laporan_pengeluaran_page.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class LaporanPage extends StatefulWidget {
   static const routeName = "/laporan-page";
@@ -11,29 +15,6 @@ class LaporanPage extends StatefulWidget {
 
 class _LaporanPageState extends State<LaporanPage>
     with TickerProviderStateMixin {
-  List<Map<String, dynamic>> laporan = [
-    {
-      "tahun": 2022,
-      "bulan": "Januari",
-    },
-    {
-      "tahun": 2022,
-      "bulan": "Februari",
-    },
-    {
-      "tahun": 2022,
-      "bulan": "Maret",
-    },
-    {
-      "tahun": 2022,
-      "bulan": "April",
-    },
-    {
-      "tahun": 2022,
-      "bulan": "Mei",
-    },
-  ];
-
   late TabController tabController;
 
   @override
@@ -76,40 +57,8 @@ class _LaporanPageState extends State<LaporanPage>
         ),
       ),
       body: TabBarView(controller: tabController, children: [
-        ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return SizedBox(
-                height: 50,
-                child: Card(
-                  elevation: 2,
-                  child: Center(
-                    child: Text(
-                      'Laporan Pemasukan ${laporan[index]['bulan']} 2022',
-                      style: blackTextStyle.copyWith(fontSize: 18),
-                    ),
-                  ),
-                ),
-              );
-            }),
-        ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return SizedBox(
-                height: 50,
-                child: Card(
-                  elevation: 2,
-                  child: Center(
-                    child: Text(
-                      'Laporan Pengeluaran ${laporan[index]['bulan']} 2022',
-                      style: blackTextStyle.copyWith(fontSize: 18),
-                    ),
-                  ),
-                ),
-              );
-            }),
+        Expanded(child: LaporanPemasukanPage()),
+        Expanded(child: LaporanPengeluaranPage()),
       ]),
     );
   }

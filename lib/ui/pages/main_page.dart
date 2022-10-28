@@ -57,8 +57,6 @@ class MainPageState extends State<MainPage> {
       resizeToAvoidBottomInset: false,
       body: page[selectedPos],
       bottomNavigationBar: bottomNav(),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {}, child: const Icon(Icons.calculate_outlined)),
     );
   }
 

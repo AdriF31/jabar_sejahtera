@@ -4,8 +4,8 @@ import 'package:jabar_sejahtera/shared/theme.dart';
 import 'package:jabar_sejahtera/ui/pages/event/event_detail_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_card.dart';
 
-class EventPage extends StatelessWidget {
-  const EventPage({
+class EventPage2 extends StatelessWidget {
+  const EventPage2({
     super.key,
   });
 
@@ -15,11 +15,9 @@ class EventPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Event',
-          style: blackTextStyle,
+          style: whiteTextStyle,
         ),
         centerTitle: true,
-        leading: const SizedBox.shrink(),
-        backgroundColor: Colors.transparent,
       ),
       body: Column(
         children: [
@@ -38,7 +36,7 @@ class EventPage extends StatelessWidget {
           ),
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               itemCount: ConstValue.event.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 12,
@@ -56,8 +54,10 @@ class EventPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  EventDetailPage(tag: 'img$index',index:index)));
+                              builder: (context) => EventDetailPage(
+                                    tag: 'img$index',
+                                    index: index,
+                                  )));
                     });
               },
             ),

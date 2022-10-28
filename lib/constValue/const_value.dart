@@ -51,4 +51,59 @@ class ConstValue {
     {"bank": "BCA", "logo": "assets/images/img_bca.png"},
     {"bank": "BCA", "logo": "assets/images/img_bca.png"},
   ];
+
+  static const List<Map<String, dynamic>> laporan = [
+    {
+      "date_time": "12 - 02 - 2022",
+      "jenis_pembayaran": "zakat",
+      "total": 200000
+    },
+    {
+      "date_time": "12 - 03 - 2022",
+      "jenis_pembayaran": "zakat",
+      "total": 250000
+    },
+    {
+      "date_time": "13 - 03 - 2022",
+      "jenis_pembayaran": "zakat",
+      "total": 260000
+    },
+    {
+      "date_time": "22 - 04 - 2022",
+      "jenis_pembayaran": "zakat",
+      "total": 345000
+    },
+    {
+      "date_time": "11 - 05 - 2022",
+      "jenis_pembayaran": "zakat",
+      "total": 120000
+    },
+  ];
+
+  static const List<Map> event = [
+    {
+      "title": "Seminar Sosial",
+      "image": "assets/images/img_event1.jpeg",
+      "tempat": "Bandung",
+      "waktu": "26 November 2020"
+    },
+    {
+      "title": "Seminar Zakat ",
+      "image": "assets/images/img_event2.jpeg",
+      "tempat": "Bandung",
+      "waktu": "26 November 2020"
+    },
+    {
+      "title": "Seminar Sosial",
+      "image": "assets/images/img_event3.jpeg",
+      "tempat": "Bandung",
+      "waktu": "26 November 2020"
+    },
+    {
+      "title": "Seminar Sosial",
+      "image": "assets/images/img_event4.png",
+      "tempat": "Bandung",
+      "waktu": "26 November 2020"
+    },
+  ];
 }

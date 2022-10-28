@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jabar_sejahtera/constValue/const_value.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 
 class EventDetailPage extends StatelessWidget {
   final String tag;
-  const EventDetailPage({
-    super.key,required this.tag
-  });
+  final int index;
+  const EventDetailPage({super.key, required this.tag, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class EventDetailPage extends StatelessWidget {
               child: Hero(
                   tag: tag,
                   child: Image.asset(
-                    'assets/1.png',
+                    ConstValue.event[index]['image'],
                     fit: BoxFit.fill,
                   ))),
           Padding(
@@ -27,14 +27,21 @@ class EventDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '28 Oktober 2022',
+                  ConstValue.event[index]['waktu'],
                   style: blackTextStyle.copyWith(fontSize: 14),
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
-                  'Relawan Baik Kita Bisa',
+                  ConstValue.event[index]['tempat'],
+                  style: blackTextStyle.copyWith(fontSize: 14),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  ConstValue.event[index]['title'],
                   style:
                       blackTextStyle.copyWith(fontSize: 24, fontWeight: bold),
                 ),
