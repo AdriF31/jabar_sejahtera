@@ -39,7 +39,7 @@ class EventPage extends StatelessWidget {
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               itemCount: 10,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                   crossAxisCount: 2,

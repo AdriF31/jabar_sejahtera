@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/auth/sign_in_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -124,8 +125,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       onPressed: () {
                         currentIndex != 2
                             ? carouselController.nextPage()
-                            : Navigator.pushNamedAndRemoveUntil(
-                                context, '/login', (route) => false);
+                            : Navigator.pushNamedAndRemoveUntil(context,
+                                SignInPage.routeName, (route) => false);
                       },
                     )
                   ]),

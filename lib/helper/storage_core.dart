@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jabar_sejahtera/data/user_model.dart';
+import 'package:jabar_sejahtera/data/model/user_model.dart';
 import 'package:localstorage/localstorage.dart';
 
 class StorageCore {
@@ -75,8 +75,8 @@ class StorageCore {
     try {
       Map<String, dynamic> data = storage.getItem('auth_result');
       LoginModel auth = LoginModel.fromJson(data);
-      print(auth.data?.user?.name);
-      print(auth.data?.token);
+      debugPrint(auth.data?.user?.name);
+      debugPrint(auth.data?.token);
       return auth.data?.user?.name.toString();
     } catch (e) {
       debugPrint("Error while load user_name: $e");

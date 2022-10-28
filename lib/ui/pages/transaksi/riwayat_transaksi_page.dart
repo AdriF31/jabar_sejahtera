@@ -9,7 +9,7 @@ class RiwayatTransaksiPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Riwayat Transaksi'),
+        title:const Text('Riwayat Transaksi'),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

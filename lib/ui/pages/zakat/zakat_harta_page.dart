@@ -1,7 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/pembayaran/metode_pembayaran_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_form_field.dart';
 
@@ -34,7 +34,14 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
   final TextEditingController emasController =
       TextEditingController(text: '960000');
 
+  final TextEditingController nameController =
+      TextEditingController(text: 'Adri');
   String totalZakat = '';
+  @override
+  void dispose() {
+    super.dispose();
+    emasController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,17 +98,16 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
               color: buttonColor,
               onPressed: () {
                 int nishab =
-                    (hargaEmasFormatter.getUnformattedValue().toInt() * 85 / 12)
-                        .toInt();
-                print(nishab);
+                    hargaEmasFormatter.getUnformattedValue().toInt() * 85 ~/ 12;
+                debugPrint(nishab.toString());
                 int totalHarta =
                     penghasilanFormatter.getUnformattedValue().toInt() +
                         asetFormatter.getUnformattedValue().toInt() +
                         kendaraanFormatter.getUnformattedValue().toInt() -
                         hutangFormatter.getUnformattedValue().toInt();
-                int totalZakat = (totalHarta * 2.5 / 100).toInt();
-                print(formatter.format(totalHarta.toString()));
-                print(formatter.format(totalZakat.toString()));
+                int totalZakat = totalHarta * 2.5 ~/ 100;
+                debugPrint(formatter.format(totalHarta.toString()));
+                debugPrint(formatter.format(totalZakat.toString()));
                 if (totalHarta < nishab || nishab == 0) {
                   setState(() {
                     isNishab = false;
@@ -112,7 +118,7 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                   });
                 }
                 showModalBottomSheet(
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(20)),
                     ),
@@ -149,7 +155,7 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                                     height: 24,
                                   ),
                                   Text(
-                                    '${formatter.format(totalZakat.toString())}',
+                                    formatter.format(totalZakat.toString()),
                                     style: blackTextStyle.copyWith(
                                         fontSize: 24, fontWeight: bold),
                                   ),
@@ -157,7 +163,6 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                                     height: 24,
                                   ),
                                   Container(
-                                    height: 100,
                                     margin:
                                         const EdgeInsets.symmetric(vertical: 2),
                                     padding: const EdgeInsets.all(12),
@@ -169,7 +174,7 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                                       Text(
                                         isNishab == true
                                             ? 'Anda wajib zakat karena harta anda sudah mencapai nishab zakat sebesar 85 gram emas'
-                                            : 'Anda tidak wajib zakat karena harta anda belum mencapai nishab yaitu sebesar\n; ${formatter.format(nishab.toString())}',
+                                            : 'Anda tidak wajib zakat karena harta anda belum mencapai nishab yaitu sebesar\n ${formatter.format(nishab.toString())}',
                                         style: blackTextStyle.copyWith(
                                             fontSize: 16),
                                         textAlign: TextAlign.justify,
@@ -180,10 +185,24 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
                                     height: 24,
                                   ),
                                   CustomFilledButton(
-                                      title: isNishab == true
-                                          ? 'Bayar Zakat'
-                                          : 'Infaq',
-                                      color: buttonColor),
+                                    title: isNishab == true
+                                        ? 'Bayar Zakat'
+                                        : 'Infaq',
+                                    color: buttonColor,
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MetodePembayaranPage(
+                                                    jenisPembayaran:
+                                                        'Zakat Harta',
+                                                    totalPembayaran: formatter
+                                                        .format(totalZakat
+                                                            .toString()),
+                                                  )));
+                                    },
+                                  ),
                                   const SizedBox(
                                     height: 24,
                                   ),
@@ -198,6 +217,5 @@ class _ZakatHartaPageState extends State<ZakatHartaPage> {
         ),
       ),
     );
-    ;
   }
 }

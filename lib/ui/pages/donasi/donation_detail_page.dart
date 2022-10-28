@@ -1,15 +1,24 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 
 class DonationDetailPage extends StatelessWidget {
   final Object tag;
-  const DonationDetailPage({super.key, required this.tag});
+  final List<Map> donasi;
+  final int index;
+  final CurrencyTextInputFormatter formatter =
+      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: 'Rp ');
+  DonationDetailPage(
+      {super.key,
+      required this.tag,
+      required this.donasi,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Detail Donasi')),
+      appBar: AppBar(title: const Text('Detail Donasi')),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
           left: 24,
@@ -21,7 +30,7 @@ class DonationDetailPage extends StatelessWidget {
           title: 'Donasi Sekarang',
           onPressed: () {
             showModalBottomSheet(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
                 context: context,
@@ -127,7 +136,7 @@ class DonationDetailPage extends StatelessWidget {
               child: Hero(
                   tag: tag,
                   child: Image.asset(
-                    'assets/1.png',
+                    donasi[index]['image'],
                     fit: BoxFit.fill,
                   ))),
           Padding(
@@ -136,9 +145,17 @@ class DonationDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Relawan Baik Kita Bisa',
+                  donasi[index]['title'],
                   style:
                       blackTextStyle.copyWith(fontSize: 24, fontWeight: bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  donasi[index]['publisher'],
+                  style: blackTextStyle.copyWith(
+                      fontSize: 18, fontWeight: regular),
                 ),
                 const SizedBox(
                   height: 24,
@@ -148,10 +165,13 @@ class DonationDetailPage extends StatelessWidget {
                   child: LinearProgressIndicator(
                     backgroundColor: greyColor,
                     color: progressBarColor,
-                    minHeight: 5,
-                    value: 0.5,
+                    minHeight: 10,
+                    value: donasi[index]['terkumpul'] / donasi[index]['target'],
                     valueColor: AlwaysStoppedAnimation(progressBarColor),
                   ),
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,7 +183,8 @@ class DonationDetailPage extends StatelessWidget {
                           style: blackTextStyle.copyWith(fontSize: 14),
                         ),
                         Text(
-                          'Rp 200.000',
+                          formatter
+                              .format(donasi[index]['terkumpul'].toString()),
                           style: blackTextStyle.copyWith(fontSize: 14),
                         )
                       ],
@@ -175,7 +196,7 @@ class DonationDetailPage extends StatelessWidget {
                           style: blackTextStyle.copyWith(fontSize: 14),
                         ),
                         Text(
-                          'Rp 1.600..000',
+                          formatter.format(donasi[index]['target'].toString()),
                           style: blackTextStyle.copyWith(fontSize: 14),
                         )
                       ],
@@ -186,7 +207,7 @@ class DonationDetailPage extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+                  donasi[index]['deskripsi'],
                   style: blackTextStyle.copyWith(fontSize: 16),
                   textAlign: TextAlign.justify,
                 ),

@@ -1,23 +1,21 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:jabar_sejahtera/data/user_model.dart';
-import 'package:jabar_sejahtera/helper/storage_core.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/auth/forgot_password_page.dart';
+import 'package:jabar_sejahtera/ui/pages/auth/sign_up_page.dart';
 import 'package:jabar_sejahtera/ui/pages/main_page.dart';
-import 'package:jabar_sejahtera/ui/pages/home/home_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_form_field.dart';
 
-class LoginPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   static const routeName = "/login-page";
-  const LoginPage({Key? key}) : super(key: key);
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   // var _dio = Dio();
   // final storage = StorageCore();
   final formKey = GlobalKey<FormState>();
@@ -33,11 +31,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     // _dio.options = BaseOptions(
     //   baseUrl: "http://10.0.2.2:8000/api/v1",
     // );
+  }
+
+  @override
+  void dispose() {
+    
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
   }
 
   @override
@@ -93,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                             icon: Icons.key_outlined,
                             isPassword: true,
                             validator: (value) {
-                              RegExp regex = new RegExp(r'^.{6,}$');
+                              RegExp regex = RegExp(r'^.{6,}$');
                               if (value!.isEmpty) {
                                 return ("Password harus diisi");
                               }
@@ -112,7 +118,10 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(context,
+                                          ForgotPasswordPage.routeName);
+                                    },
                                     child: const Text("Lupa Password?"))
                               ],
                             ),
@@ -125,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                               color: buttonColor,
                               onPressed: () {
                                 if (formKey.currentState?.validate() == true) {
-                                  print('ok');
+                                  debugPrint('ok');
                                   if (_emailController.text == email &&
                                       _passwordController.text == password) {
                                     Fluttertoast.showToast(
@@ -134,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => MainPage()));
+                                            builder: (context) => const MainPage()));
                                   } else {
                                     Fluttertoast.showToast(
                                         msg: "email atau password salah",
@@ -172,7 +181,8 @@ class _LoginPageState extends State<LoginPage> {
                                 const SizedBox(width: 4),
                                 GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(context, '/sign-up');
+                                      Navigator.pushNamed(
+                                          context, SignUpPage.routeName);
                                     },
                                     child: Text(
                                       'Sign Up',
@@ -186,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             )
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );

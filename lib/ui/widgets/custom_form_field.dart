@@ -1,15 +1,15 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 
 class CustomFormField extends StatelessWidget {
   final String title;
   final String? hint;
   final bool isPassword;
+  final bool isReadOnly;
   final IconData icon;
   final TextEditingController? controller;
-    final String? Function(String?)? validator;
+  final String? Function(String?)? validator;
   final bool isShowTitle;
   const CustomFormField(
       {Key? key,
@@ -18,6 +18,7 @@ class CustomFormField extends StatelessWidget {
       required this.icon,
       this.controller,
       this.hint,
+      this.isReadOnly = false,
       this.validator,
       this.isShowTitle = true})
       : super(key: key);
@@ -37,6 +38,7 @@ class CustomFormField extends StatelessWidget {
                 height: 8,
               ),
         TextFormField(
+          readOnly: isReadOnly,
           validator: validator,
           controller: controller,
           decoration: InputDecoration(
@@ -88,7 +90,6 @@ class CurrencyInputField extends StatelessWidget {
         TextField(
           keyboardType: TextInputType.number,
           inputFormatters: [formatter],
-          
           controller: controller,
           decoration: InputDecoration(
               focusColor: greenColor,

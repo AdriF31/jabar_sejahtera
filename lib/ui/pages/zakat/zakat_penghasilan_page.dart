@@ -12,7 +12,9 @@ class ZakatPenghasilanPage extends StatefulWidget {
 }
 
 class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
-  bool isBayar = false;
+  bool isNishab = false;
+  final CurrencyTextInputFormatter formatter =
+      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: 'Rp ');
   CurrencyTextInputFormatter hargaEmasFormatter = CurrencyTextInputFormatter(
     decimalDigits: 0,
     locale: 'id',
@@ -26,6 +28,8 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
       CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: '');
   CurrencyTextInputFormatter hutangFormatter =
       CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: '');
+  final TextEditingController emasController =
+      TextEditingController(text: '960000');
   String totalZakat = '';
 
   @override
@@ -39,6 +43,8 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
           child: Column(
             children: [
               CurrencyInputField(
+                controller: emasController
+                  ..text = hargaEmasFormatter.format(emasController.text),
                 title: 'Harga Emas',
                 hint: '5.000.000',
                 formatter: hargaEmasFormatter,
@@ -70,26 +76,34 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
               const SizedBox(
                 height: 8,
               ),
-              Visibility(
-                visible: isBayar,
-                child: Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(vertical: 12),
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [],
-                  ),
-                ),
-              ),
               CustomFilledButton(
-                title: isBayar == true ? 'bayar hey' : 'Hitung',
+                title: 'Hitung',
                 color: buttonColor,
                 onPressed: () {
+                  int nishab =
+                      hargaEmasFormatter.getUnformattedValue().toInt() *
+                              85 ~/
+                              12;
+                  debugPrint(nishab.toString());
+                  int totalHarta =
+                      penghasilanFormatter.getUnformattedValue().toInt() +
+                          asetFormatter.getUnformattedValue().toInt() +
+                          kendaraanFormatter.getUnformattedValue().toInt() -
+                          hutangFormatter.getUnformattedValue().toInt();
+                  int totalZakat = totalHarta * 2.5 ~/ 100;
+                  debugPrint(formatter.format(totalHarta.toString()));
+                  debugPrint(formatter.format(totalZakat.toString()));
+                  if (totalHarta < nishab || nishab == 0) {
+                    setState(() {
+                      isNishab = false;
+                    });
+                  } else {
+                    setState(() {
+                      isNishab = true;
+                    });
+                  }
                   showModalBottomSheet(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(20)),
                       ),
@@ -127,7 +141,7 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
                                       height: 24,
                                     ),
                                     Text(
-                                      'Rp 350.000',
+                                      totalZakat.toString(),
                                       style: blackTextStyle.copyWith(
                                           fontSize: 24, fontWeight: bold),
                                     ),
@@ -135,7 +149,6 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
                                       height: 24,
                                     ),
                                     Container(
-                                      height: 80,
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 2),
                                       padding: const EdgeInsets.all(12),
@@ -145,7 +158,7 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
                                               BorderRadius.circular(10)),
                                       child: Column(children: [
                                         Text(
-                                          'Harta anda sudah mencapai nishab zakat sebesar 85 gram emas',
+                                          'Harta anda sudah mencapai nishab zakat sebesar 85 gram emas per bulan (${formatter.format(nishab.toString())})',
                                           style: blackTextStyle.copyWith(
                                               fontSize: 16),
                                           textAlign: TextAlign.justify,
@@ -173,6 +186,6 @@ class _ZakatPenghasilanPageState extends State<ZakatPenghasilanPage> {
         ),
       ),
     );
-    ;
+    
   }
 }

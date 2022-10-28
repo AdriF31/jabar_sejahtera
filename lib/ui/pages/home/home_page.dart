@@ -2,10 +2,13 @@ import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
+import 'package:jabar_sejahtera/ui/pages/donasi/donasi_page.dart';
 import 'package:jabar_sejahtera/ui/pages/donasi/donation_detail_page.dart';
 import 'package:jabar_sejahtera/ui/pages/event/event_detail_page.dart';
 import 'package:jabar_sejahtera/ui/pages/event/event_page.dart';
+import 'package:jabar_sejahtera/ui/pages/laporan/laporan_page.dart';
 import 'package:jabar_sejahtera/ui/pages/profil/profile_page.dart';
+import 'package:jabar_sejahtera/ui/pages/zakat/zakat.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_card.dart';
 import 'package:jabar_sejahtera/ui/widgets/menu.dart';
 
@@ -18,7 +21,55 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> pages = [HomePage(), EventPage(), ProfilePage()];
+  final List<Widget> pages = [const HomePage(), const EventPage(), const ProfilePage()];
+
+  List<Map<String, dynamic>> donasi = [
+    {
+      "image": "assets/images/img_donasi1.png",
+      "title": "Koin untuk adri",
+      "publisher": "Jabar Sejahtera",
+      "terkumpul": 2500000,
+      "target": 10000000,
+      "deskripsi":
+          "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+    },
+    {
+      "image": "assets/images/img_donasi2.png",
+      "title": "Bantu saya",
+      "publisher": "Jabar Sejahtera",
+      "terkumpul": 3000000,
+      "target": 10000000,
+      "deskripsi":
+          "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+    },
+    {
+      "image": "assets/images/img_donasi3.png",
+      "title": "Bedah rumah",
+      "publisher": "Jabar Sejahtera",
+      "terkumpul": 3360000,
+      "target": 14000000,
+      "deskripsi":
+          "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+    },
+    {
+      "image": "assets/images/img_donasi4.png",
+      "title": "Sedekah Bantu Makan Santri jjjjjj",
+      "publisher": "Jabar Sejahtera",
+      "terkumpul": 30000000,
+      "target": 124000000,
+      "deskripsi":
+          "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+    },
+    {
+      "image": "assets/images/img_donasi5.png",
+      "title": "Koin untuk adri",
+      "publisher": "Jabar Sejahtera",
+      "terkumpul": 300000,
+      "target": 10000000,
+      "deskripsi":
+          "Penyaluran Bersama #RelawanBaik Kitabisa adalah program yang kami buka bagi donatur setia aplikasi Kitabisa, agar berkesampatan menjadi relawan di berbagai kegiatan penyaluran bantuan. Program ini bertujuan agar donatur bisa melihat langsung dampak yang mereka berikan dari tiap donasi yang masuk melalui aplikasi Kitabisa. Selain itu, mereka yang terpilih menjadi #RelawanBaik juga bisa berinteraksi dan mendengar perjuangan di setiap cerita penggalang dana di aplikasi Kitabisa. ",
+    },
+  ];
 
   final List<Widget> _carousel = [
     Container(
@@ -143,7 +194,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Menu(
-            onTap: () => Navigator.pushNamed(context, '/zakat-page'),
+            onTap: () => Navigator.pushNamed(context, ZakatPage.routeName),
             title: "Zakat",
             icon: "assets/ic_zakat.png",
           ),
@@ -151,12 +202,15 @@ class _HomePageState extends State<HomePage> {
             title: "Donasi",
             icon: "assets/ic_donasi.png",
             onTap: () {
-              Navigator.pushNamed(context, '/donasi-page');
+              Navigator.pushNamed(context, DonasiPage.routeName);
             },
           ),
           Menu(
             title: "Laporan",
             icon: "assets/ic_laporan.png",
+            onTap: () {
+              Navigator.pushNamed(context, LaporanPage.routeName);
+            },
           ),
         ],
       ),
@@ -175,13 +229,17 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 16,
               ),
             ),
-            Container(
-                child: Row(
-              children: [
-                Text('Lihat Semua'),
-                Icon(Icons.navigate_next),
-              ],
-            ))
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, DonasiPage.routeName);
+              },
+              child: Row(
+                children: const [
+              Text('Lihat Semua'),
+              Icon(Icons.navigate_next),
+                ],
+              ),
+            )
           ],
         ),
         const SizedBox(
@@ -191,16 +249,24 @@ class _HomePageState extends State<HomePage> {
           height: 250,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 6,
+            itemCount: donasi.length,
             itemBuilder: (context, index) {
               return DonasiCard(
                 tag: '$index',
+                title: donasi[index]['title'],
+                image: donasi[index]['image'],
+                publisher: donasi[index]['publisher'],
+                terkumpul: donasi[index]['terkumpul'],
+                target: donasi[index]['target'],
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              DonationDetailPage(tag: '$index')));
+                          builder: (context) => DonationDetailPage(
+                                tag: '$index',
+                                donasi: donasi,
+                                index: index,
+                              )));
                 },
               );
             },
@@ -223,13 +289,15 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 16,
               ),
             ),
-            Container(
-                child: Row(
-              children: [
-                Text('Lihat Semua'),
-                Icon(Icons.navigate_next),
-              ],
-            ))
+            GestureDetector(
+              onTap: () {},
+              child: Row(
+                children: const [
+              Text('Lihat Semua'),
+              Icon(Icons.navigate_next),
+                ],
+              ),
+            )
           ],
         ),
         const SizedBox(

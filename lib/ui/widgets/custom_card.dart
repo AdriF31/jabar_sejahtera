@@ -1,11 +1,26 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 
 class DonasiCard extends StatelessWidget {
   final Object tag;
+  final String image;
+  final int terkumpul;
+  final int target;
+  final String title;
+  final String publisher;
+  final CurrencyTextInputFormatter formatter =
+      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: 'Rp ');
   final VoidCallback onTap;
-  const DonasiCard({Key? key, required this.tag, required this.onTap})
-      : super(key: key);
+  DonasiCard(
+      {super.key,
+      required this.tag,
+      required this.onTap,
+      required this.title,
+      required this.publisher,
+      required this.image,
+      required this.terkumpul,
+      required this.target});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,7 @@ class DonasiCard extends StatelessWidget {
                 child: Hero(
                   tag: tag,
                   child: Image.asset(
-                    'assets/1.png',
+                    image,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -42,13 +57,14 @@ class DonasiCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Koin untuk adri',
+                      title,
                       style: blackTextStyle.copyWith(
                         fontSize: 16,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      'Jabar Sejahtera',
+                      publisher,
                       style: greyTextStyle.copyWith(
                         fontSize: 14,
                       ),
@@ -60,7 +76,7 @@ class DonasiCard extends StatelessWidget {
                         backgroundColor: greyColor,
                         color: progressBarColor,
                         minHeight: 5,
-                        value: 0.5,
+                        value: terkumpul / target,
                         valueColor: AlwaysStoppedAnimation(progressBarColor),
                       ),
                     ),
@@ -74,7 +90,7 @@ class DonasiCard extends StatelessWidget {
                               style: blackTextStyle.copyWith(fontSize: 12),
                             ),
                             Text(
-                              'Rp 200.000',
+                              formatter.format(terkumpul.toString()),
                               style: blackTextStyle.copyWith(fontSize: 12),
                             )
                           ],
@@ -86,7 +102,7 @@ class DonasiCard extends StatelessWidget {
                               style: blackTextStyle.copyWith(fontSize: 12),
                             ),
                             Text(
-                              'Rp 1.600.000',
+                              formatter.format(target.toString()),
                               style: blackTextStyle.copyWith(fontSize: 12),
                             )
                           ],
@@ -109,8 +125,23 @@ class DonasiCard extends StatelessWidget {
 
 class DonasiCardList extends StatelessWidget {
   final Object tag;
+  final String image;
+  final int terkumpul;
+  final int target;
+  final String title;
+  final String publisher;
+  final CurrencyTextInputFormatter formatter =
+      CurrencyTextInputFormatter(decimalDigits: 0, locale: 'id', symbol: 'Rp ');
   final VoidCallback onTap;
-  const DonasiCardList({super.key, required this.tag, required this.onTap});
+  DonasiCardList(
+      {super.key,
+      required this.tag,
+      required this.onTap,
+      required this.title,
+      required this.publisher,
+      required this.image,
+      required this.terkumpul,
+      required this.target});
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +163,7 @@ class DonasiCardList extends StatelessWidget {
                   transitionOnUserGestures: true,
                   tag: tag,
                   child: Image.asset(
-                    'assets/1.png',
+                    image,
                     height: 130,
                     width: 100,
                     fit: BoxFit.fill,
@@ -146,17 +177,18 @@ class DonasiCardList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Koin Untuk Adri',
+                        title,
                         style: blackTextStyle.copyWith(
                             fontSize: 16, fontWeight: black),
+                        overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        'Jabar Sejahtera',
+                        publisher,
                         style: blackTextStyle.copyWith(
                             fontSize: 12, fontWeight: regular),
                       ),
                       const SizedBox(
-                        height: 6,
+                        height: 14,
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5),
@@ -164,7 +196,7 @@ class DonasiCardList extends StatelessWidget {
                           backgroundColor: greyColor,
                           color: progressBarColor,
                           minHeight: 5,
-                          value: 0.5,
+                          value: terkumpul / target,
                           valueColor: AlwaysStoppedAnimation(progressBarColor),
                         ),
                       ),
@@ -181,8 +213,8 @@ class DonasiCardList extends StatelessWidget {
                                 style: blackTextStyle.copyWith(fontSize: 12),
                               ),
                               Text(
-                                'Rp 200.000',
-                                style: blackTextStyle.copyWith(fontSize: 12),
+                                formatter.format(terkumpul.toString()),
+                                style: blackTextStyle.copyWith(fontSize: 14),
                               )
                             ],
                           ),
@@ -193,8 +225,8 @@ class DonasiCardList extends StatelessWidget {
                                 style: blackTextStyle.copyWith(fontSize: 12),
                               ),
                               Text(
-                                'Rp 1.600.000',
-                                style: blackTextStyle.copyWith(fontSize: 12),
+                                formatter.format(target.toString()),
+                                style: blackTextStyle.copyWith(fontSize: 14),
                               )
                             ],
                           )
@@ -232,7 +264,7 @@ class EventCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                 child: Hero(tag: tag, child: Image.asset('assets/2.png'))),
             const SizedBox(
               height: 2,
@@ -252,12 +284,12 @@ class EventCard extends StatelessWidget {
                     height: 2,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.calendar_month,
                         size: 24,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 4,
                       ),
                       Text('30 Februari 2022')
@@ -267,12 +299,12 @@ class EventCard extends StatelessWidget {
                     height: 8,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.location_on_outlined,
                         size: 24,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 4,
                       ),
                       Text('Kirigakure')

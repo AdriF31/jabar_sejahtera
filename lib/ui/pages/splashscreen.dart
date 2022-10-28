@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/helper/storage_core.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
-import 'package:jabar_sejahtera/ui/pages/main_page.dart';
-import 'package:jabar_sejahtera/ui/pages/home/home_page.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/login_page.dart';
+import 'package:jabar_sejahtera/ui/pages/onboarding/onboarding_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
@@ -21,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/onboarding');
+      Navigator.pushReplacementNamed(context, OnboardingPage.routeName);
       // if (storage.getAccessToken() == null ||
       //     storage.getAccessToken() == "token_not_loaded") {
       //   Navigator.pushReplacement(

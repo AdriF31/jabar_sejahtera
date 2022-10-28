@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 import 'package:jabar_sejahtera/ui/pages/zakat/zakat_harta_page.dart';
 import 'package:jabar_sejahtera/ui/pages/zakat/zakat_penghasilan_page.dart';
-import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
-import 'package:jabar_sejahtera/ui/widgets/custom_form_field.dart';
 
 class ZakatPage extends StatefulWidget {
   static const routeName = "/zakat-page";
@@ -27,9 +25,9 @@ class _ZakatPageState extends State<ZakatPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Zakat'),
+        title: const Text('Zakat'),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(30),
+          preferredSize: const Size.fromHeight(30),
           child: TabBar(
               controller: tabController,
               indicatorWeight: 5,
@@ -37,7 +35,7 @@ class _ZakatPageState extends State<ZakatPage> with TickerProviderStateMixin {
               tabs: [
                 Column(
                   children: [
-                    Icon(Icons.attach_money_outlined),
+                    const Icon(Icons.attach_money_outlined),
                     Text(
                       'Zakat Harta',
                       style: whiteTextStyle.copyWith(fontSize: 16),
@@ -46,7 +44,7 @@ class _ZakatPageState extends State<ZakatPage> with TickerProviderStateMixin {
                 ),
                 Column(
                   children: [
-                    Icon(Icons.attach_money_outlined),
+                    const Icon(Icons.attach_money_outlined),
                     Text(
                       'Zakat Penghasilan',
                       style: whiteTextStyle.copyWith(fontSize: 16),
@@ -58,7 +56,7 @@ class _ZakatPageState extends State<ZakatPage> with TickerProviderStateMixin {
       ),
       body: TabBarView(
           controller: tabController,
-          children: [ZakatHartaPage(), ZakatPenghasilanPage()]),
+          children: const [ZakatHartaPage(), ZakatPenghasilanPage()]),
     );
   }
 }

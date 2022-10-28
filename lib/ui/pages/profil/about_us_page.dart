@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tentang Kami')),
+      appBar: AppBar(title: const Text('Tentang Kami')),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -41,16 +42,13 @@ class AboutUsPage extends StatelessWidget {
               'Hubungi Kami',
               style: blackTextStyle.copyWith(fontSize: 16, fontWeight: bold),
             ),
-            Divider(),
+            const Divider(),
             const SizedBox(
               height: 12,
             ),
             Row(
               children: [
-                Icon(
-                  Icons.email_outlined,
-                  size: 38,
-                ),
+                SvgPicture.asset('assets/icons/ic_email.svg'),
                 Text(
                   "jabarsejahtera@gmail.com",
                   style: blackTextStyle.copyWith(
@@ -63,10 +61,7 @@ class AboutUsPage extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(
-                  Icons.email_outlined,
-                  size: 38,
-                ),
+                SvgPicture.asset('assets/icons/ic_wa.svg'),
                 Text(
                   "jabarsejahtera@gmail.com",
                   style: blackTextStyle.copyWith(
@@ -79,12 +74,9 @@ class AboutUsPage extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(
-                  Icons.email_outlined,
-                  size: 38,
-                ),
+                SvgPicture.asset('assets/icons/ic_ig.svg'),
                 Text(
-                  "jabarsejahtera@gmail.com",
+                  "@jabarsejahtera",
                   style: blackTextStyle.copyWith(
                       fontSize: 16, fontWeight: regular),
                 ),
@@ -97,13 +89,13 @@ class AboutUsPage extends StatelessWidget {
               'Hubungi Kami',
               style: blackTextStyle.copyWith(fontSize: 16, fontWeight: bold),
             ),
-            Divider(),
+            const Divider(),
             const SizedBox(
               height: 12,
             ),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.email_outlined,
                   size: 38,
                 ),

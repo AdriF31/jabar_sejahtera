@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/helper/storage_core.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/login_page.dart';
+import 'package:jabar_sejahtera/ui/pages/auth/sign_in_page.dart';
+import 'package:jabar_sejahtera/ui/pages/profil/about_us_page.dart';
+import 'package:jabar_sejahtera/ui/pages/profil/edit_profile_page.dart';
+import 'package:jabar_sejahtera/ui/pages/transaksi/riwayat_transaksi_page.dart';
 import 'package:jabar_sejahtera/ui/widgets/custom_buttons.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -61,20 +64,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 title: 'Ubah Profil',
                 icon: Icons.person_outline,
                 onTap: () {
-                  Navigator.pushNamed(context, '/edit-profile-page');
+                  Navigator.pushNamed(context, EditProfilePage.routeName);
                 },
               ),
               CustomWhiteButton(
                 title: 'Riwayat Transaksi',
                 icon: Icons.history_outlined,
                 onTap: () {
-                  Navigator.pushNamed(context, '/riwayat-transaksi');
+                  Navigator.pushNamed(context, RiwayatTransaksiPage.routeName);
                 },
               ),
               CustomWhiteButton(
                 title: 'Tentang Kami',
                 icon: Icons.info_outline,
-                onTap: () => Navigator.pushNamed(context, '/about-us-page'),
+                onTap: () =>
+                    Navigator.pushNamed(context, AboutUsPage.routeName),
               ),
               CustomWhiteButton(
                 title: 'Logout',
@@ -105,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => LoginPage()));
+                                        builder: (context) => const SignInPage()));
                               },
                               child: Container(
                                 width: 80,
