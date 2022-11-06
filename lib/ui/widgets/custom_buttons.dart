@@ -8,6 +8,7 @@ class CustomFilledButton extends StatelessWidget {
   final Color color;
   final double radius;
   final VoidCallback? onPressed;
+  final bool isLoading;
   const CustomFilledButton(
       {Key? key,
       required this.title,
@@ -15,6 +16,7 @@ class CustomFilledButton extends StatelessWidget {
       this.height = 50,
       required this.color,
       this.radius = 10,
+      this.isLoading = false,
       this.onPressed})
       : super(key: key);
 
@@ -30,10 +32,13 @@ class CustomFilledButton extends StatelessWidget {
             backgroundColor: color,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius))),
-        child: Text(
-          title,
-          style: whiteTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator()
+            : Text(
+                title,
+                style:
+                    whiteTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+              ),
       ),
     );
   }

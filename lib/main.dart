@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jabar_sejahtera/helper/scroll_configuration.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/forgot_password_page.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/reset_password_page.dart';
-import 'package:jabar_sejahtera/ui/pages/laporan/laporan_page.dart';
-import 'package:jabar_sejahtera/ui/pages/pembayaran/pembayaran_page.dart';
-import 'package:jabar_sejahtera/ui/pages/profil/about_us_page.dart';
-import 'package:jabar_sejahtera/ui/pages/main_page.dart';
-import 'package:jabar_sejahtera/ui/pages/donasi/donasi_page.dart';
-import 'package:jabar_sejahtera/ui/pages/profil/edit_profile_page.dart';
-import 'package:jabar_sejahtera/ui/pages/home/home_page.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/sign_in_page.dart';
-import 'package:jabar_sejahtera/ui/pages/onboarding/onboarding_page.dart';
-import 'package:jabar_sejahtera/ui/pages/auth/sign_up_page.dart';
-import 'package:jabar_sejahtera/ui/pages/splashscreen.dart';
-import 'package:jabar_sejahtera/ui/pages/transaksi/riwayat_transaksi_page.dart';
-import 'package:jabar_sejahtera/ui/pages/zakat/zakat.dart';
+import 'package:jabar_sejahtera/ui/auth/password/forgot_password_page.dart';
+import 'package:jabar_sejahtera/ui/auth/password/reset_password_page.dart';
+import 'package:jabar_sejahtera/ui/laporan/laporan_page.dart';
+import 'package:jabar_sejahtera/ui/pembayaran/pembayaran_page.dart';
+import 'package:jabar_sejahtera/ui/profil/about_us_page.dart';
+import 'package:jabar_sejahtera/ui/main_page.dart';
+import 'package:jabar_sejahtera/ui/donasi/donasi_page.dart';
+import 'package:jabar_sejahtera/ui/profil/edit_profile_page.dart';
+import 'package:jabar_sejahtera/ui/home/home_page.dart';
+import 'package:jabar_sejahtera/ui/auth/login/sign_in_page.dart';
+import 'package:jabar_sejahtera/ui/onboarding/onboarding_page.dart';
+import 'package:jabar_sejahtera/ui/auth/register/register_page.dart';
+import 'package:jabar_sejahtera/ui/splashscreen.dart';
+import 'package:jabar_sejahtera/ui/transaksi/riwayat_transaksi_page.dart';
+import 'package:jabar_sejahtera/ui/zakat/zakat.dart';
 
 void main() {
   runApp(const JabarSejahtera());
@@ -27,7 +27,7 @@ class JabarSejahtera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       builder: (context, child) {
         child =
             ScrollConfiguration(behavior: IosScrollBehavior(), child: child!);
@@ -38,7 +38,7 @@ class JabarSejahtera extends StatelessWidget {
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
         SignInPage.routeName: (context) => const SignInPage(),
-        SignUpPage.routeName: (context) => const SignUpPage(),
+        RegisterPage.routeName: (context) => const RegisterPage(),
         HomePage.routeName: (context) => const HomePage(),
         OnboardingPage.routeName: (context) => const OnboardingPage(),
         DonasiPage.routeName: (context) => const DonasiPage(),
@@ -53,7 +53,6 @@ class JabarSejahtera extends StatelessWidget {
         ResetPasswordPage.routeName: (context) => const ResetPasswordPage(),
         LaporanPage.routeName: (context) => const LaporanPage(),
         PembayaranPage.routeName: (context) => const PembayaranPage(),
-       
       },
       theme: ThemeData(
           scaffoldBackgroundColor: bgColor,

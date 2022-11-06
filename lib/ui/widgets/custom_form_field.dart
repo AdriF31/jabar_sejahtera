@@ -2,7 +2,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:flutter/material.dart';
 import 'package:jabar_sejahtera/shared/theme.dart';
 
-class CustomFormField extends StatelessWidget {
+class CustomTextFormField extends StatelessWidget {
   final String title;
   final String? hint;
   final bool isPassword;
@@ -11,7 +11,7 @@ class CustomFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool isShowTitle;
-  const CustomFormField(
+  const CustomTextFormField(
       {Key? key,
       required this.title,
       this.isPassword = false,
@@ -41,6 +41,7 @@ class CustomFormField extends StatelessWidget {
           readOnly: isReadOnly,
           validator: validator,
           controller: controller,
+          enabled: !isReadOnly,
           decoration: InputDecoration(
               focusColor: greenColor,
               hintText: hint,
